@@ -2,37 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokemon home page </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href='https://pokeapi.co/api/v2/pokemon/ditto' rel='stylesheet'/>
+    <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
 <div id="container">
 
 <!-- navbar content-->
-<nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand">Pokemon Collection</a>
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" id="gif" href="#">
+        <div class="tenor-gif-embed" data-postid="4780148" data-width="5%" data-aspect-ratio="1.0">
+            <a href="https://tenor.com/view/pokemon-pichu-gif-4780148"></a>
+        </div>
+    </a>
     <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search by name" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
 </nav>
 
 
-<h1 id="head">Welcome Pokemon Lover </h1>
+<h1 class="head ">Welcome Pokemon's Lover </h1>
 
-<h3> Here we will be using pokemon picture in Grid</h3>
+    <div id="pokemon">
+        <h3> Pokemon Collections</h3>
+
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Name</h5>
+            </div>
+            <img src="..." class="card-img-top" alt="...">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Poke info</li>
+            </ul>
+        </div>
+
+    </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
 
 <!--for jQuery-->
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"
@@ -42,6 +51,7 @@
 
 <!--for linking files-->
 <script src="js/home.js"></script>
+<script type="text/javascript" async src="https://tenor.com/embed.js"></script>
 
 <!--bootstrap use-->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
