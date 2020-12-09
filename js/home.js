@@ -1,12 +1,12 @@
 
 //creating object of what we need from this API
  const pokemonData = {
-     url:'https://pokeapi.co/api/v2/',
+     url:'https://pokeapi.co/api/v2/pokemon/ditto',
      type:'pokemon',
      id:'15',
  }
 
- const pokemonUrl = `${pokemonData.url} ${pokemonData.type} / ${pokemonData.id}`
+ const pokemonUrl =`${pokemonData.url}?types=${pokemonData.type}&ids=${pokemonData.id}`
 
 //console.log to see the status of URl
 // console.log(pokemonUrl);
