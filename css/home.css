@@ -16,3 +16,7 @@
 #container {
     position: relative;
 }
+
+.pokemon{
+    padding: 2px;
+}
