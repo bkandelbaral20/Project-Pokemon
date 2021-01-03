@@ -19,17 +19,26 @@
             </div>
         </a>
         <form class="form-inline">
-            <input id class="form-control mr-sm-2" type="search" placeholder="Search by name" aria-label="Search">
-            <button type="submit" class="btn btn-outline-success my-2 my-sm-0"><i class="fa fa-search"></i></button>
+            <input id="search" class="form-control mr-sm-2" type="search" placeholder="Search by name"
+                   aria-label="Search">
+            <button id="submit" type="submit" class="btn btn-outline-success my-2 my-sm-0"><i class="fa fa-search"></i>
+            </button>
         </form>
     </nav>
 
 
     <h1 class="head">Pokemon</h1>
-
-    <div class="container1 ">
-        <div class="pokemon"></div>
+        <div class="col-8">
+            <div class="container1">
+                <div class="pokemon">
+                </div>
+        </div>
     </div>
+
+    <button type="submit" id="nav-btns" class="btn btn-outline-success my-2 my-sm-0">
+        <!--        <a id="prev" href="${previous}">Previous </a>-->
+        <!--        <a id="next" href="${next}">  Next</a>-->
+    </button>
 </div>
 
 <!--for jQuery-->

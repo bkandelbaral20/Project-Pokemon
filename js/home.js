@@ -10,6 +10,52 @@ const pokemonUrl = pokemonData.url + pokemonData.type + pokemonData.offset
 
 // console.log(pokemonUrl);
 
+//----------------
+document.addEventListener("DOMContentLoaded", function(){
+    fetch(pokemonUrl.concat(pokemonData.initoffset))
+        .then((info) => info.json())
+        .then(renderPageControls)
+        .then(buildPokemon)
+        .then(structure)
+        .then(status => {
+            if(status === "rendered"){
+                const prevBtn = document.querySelector("#prev");
+                const nextBtn = document.querySelector("#next");
+                if(prevBtn && nextBtn){
+                    prevBtn.addEventListener("click", function(event){
+                        event.preventDefault();
+                        if(!prevBtn.pathname.includes("null")){
+                            console.log("hi")
+                        }
+                    })
+                    nextBtn.addEventListener("click", function(event){
+                        event.preventDefault();
+                        if(!nextBtn.pathname.includes("null")){
+                            console.log("hi")
+                        }
+                    })
+                }
+            }
+        })
+        .catch(console.error);
+
+})
+
+async function renderPageControls(data){
+    let controls = [data.next, data.previous]
+    const navBtnsContainer = document.querySelector("#nav-btns")
+
+	navBtnsContainer.insertAdjacentHTML('beforeend', createPageControls(controls))
+    return data.results;
+}
+
+function createPageControls([next, previous]){
+    return `<a id="prev" href="${previous}">Previous </a>
+            <a id="next" href="${next}">  Next</a>	`
+}
+
+//------------
+
 //BY using fetch we will now get all the data needed for pokemon
 
 fetch(pokemonUrl)
@@ -45,7 +91,7 @@ function structure(arrayOfPokemon) {
 
 function createPokemon(pokemon){
     return `
-    <div class="card" style="width: 14rem;">
+    <div class="card" style="width: 20rem;">
         <div class="card-body">
            <h5 class="card-title"><strong>${pokemon.name}</strong></h5>
         </div>
@@ -57,3 +103,28 @@ function createPokemon(pokemon){
         </ul>
     </div>`
 }
+
+//-----------------------
+
+//Filters by with the user input searches. Calls function every time a new letter is typed using eventListeners.
+
+var searchBar = document.getElementById("search")
+searchBar.addEventListener("input", updatePoke)
+
+function updatePoke(e) {
+    e.preventDefault(); // don't submit the form, we just want to update the data
+    // var selectedRoast = roastSelection.value;
+    var filteredPoke = [];
+    console.log("test")
+    pokes.forEach(function (poke) {
+            if (poke.name.toLowerCase().includes(searchBar.value.toLowerCase())) {
+                filteredPoke.push(poke);
+            }
+    });
+    structure.innerHTML = createPokemon(filteredPoke);
+}
+
+//events for searching by name
+var submitButton = document.querySelector('#submit');
+
+submitButton.addEventListener('click', updatePoke);

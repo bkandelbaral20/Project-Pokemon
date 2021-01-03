@@ -18,9 +18,19 @@
 }
 
 .pokemon{
-    padding: 2px;
+    padding: 2px 10px 2px 2px;
 }
 
 .fav{
-    width: 50%;
+    width: 20%;
+    border: 3px;
+    background: white;
 }
+.card{
+    margin-top: 25px;
+    display: inline-block;
+    padding: 20px;
+    border:groove;
+    border-radius: 2rem;
+}
+
