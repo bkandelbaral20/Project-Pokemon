@@ -15,6 +15,7 @@
 
 #container {
     position: relative;
+
 }
 
 .pokemon{
@@ -25,6 +26,7 @@
     width: 20%;
     border: 3px;
     background: white;
+    margin-bottom: 10px;
 }
 .card{
     margin-top: 25px;
@@ -33,4 +35,17 @@
     border:groove;
     border-radius: 2rem;
 }
+
+h5 {
+    justify-content: center;
+}
+
+.card, .card-body, .list-group {
+    border: 2px solid #98D9F5;
+    box-shadow: 1px 1px 15px #98D9F5;
+    background: papayawhip;
+    /*color: rgb(197,198,200);*/
+
+}
+
 

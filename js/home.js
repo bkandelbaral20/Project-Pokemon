@@ -91,20 +91,29 @@ function structure(arrayOfPokemon) {
 
 function createPokemon(pokemon){
     return `
-    <div class="card" style="width: 20rem;">
-        <div class="card-body">
-           <h5 class="card-title"><strong>${pokemon.name}</strong></h5>
+    <div class="card " style="width: 20rem;">
+        <div class="card-body" ">
+           <h5 class="card-title text-center"><strong>${pokemon.name}</strong></h5>
         </div>
         <img src= ${pokemon.sprite} class="card-img-top" alt="...">
-        <button class="fav" type="submit"><i class="fa fa-heart" style="font-size:30px"></i></i></button>
+        <button id="like" class="fav" type="submit"><i class="fa fa-heart" style="font-size:30px"></i></i></button>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item"> <span> Height: ${pokemon.height}</span></li>
-            <li class="list-group-item"> <span> Weight: ${pokemon.weight}</span></li>
+            <li class="list-group-item text-center"> <span><strong> Height: ${pokemon.height}</strong></span></li>
+            <li class="list-group-item text-center"> <span><strong> Weight: ${pokemon.weight}</strong></span></li>
         </ul>
     </div>`
 }
 
 //-----------------------
+
+
+//for favourite button
+
+$('#like').click(function() {
+    alert('hello there');
+});
+
+
 
 //Filters by with the user input searches. Calls function every time a new letter is typed using eventListeners.
 
