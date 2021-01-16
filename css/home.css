@@ -1,6 +1,7 @@
 
 * {
     font-family: Courier;
+
 }
 
 .head{
@@ -15,6 +16,7 @@
 
 #container {
     position: relative;
+    background-color: cornflowerblue;
 
 }
 
@@ -28,6 +30,7 @@
     background: white;
     margin-bottom: 10px;
 }
+
 .card{
     margin-top: 25px;
     display: inline-block;
@@ -42,10 +45,8 @@ h5 {
 
 .card, .card-body, .list-group {
     border: 2px solid #98D9F5;
-    box-shadow: 1px 1px 15px #98D9F5;
-    background: papayawhip;
-    /*color: rgb(197,198,200);*/
-
+    /*border-block-style: none;*/
+    /*box-shadow: 1px 1px 15px #98D9F5;*/
 }
 
 

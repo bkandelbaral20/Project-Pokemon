@@ -64,10 +64,12 @@ async function buildPokemon() {
     let pokemonList = results.map(async result => {
         const pokeData = await fetch(result.url).then(d => d.json())
         let newPokemon = {
+            id: pokeData.id,
             name: pokeData.name,
             height: pokeData.height,
             weight: pokeData.weight,
             sprite: pokeData.sprites.front_default,
+            spriteB: pokeData.sprites.back_default,
         }
         return newPokemon
     })
@@ -89,16 +91,23 @@ function structure(arrayOfPokemon) {
 
 function createPokemon(pokemon) {
     return `
-    <div class="card " style="width: 20rem;">
-        <div class="card-body" ">
+    <div class="card " style="width: 25rem;">
+        <div class="card-body">
            <h5 class="card-title text-center"><strong>${pokemon.name}</strong></h5>
         </div>
+<!--        <div class="row inline-block"> -->
         <img src= ${pokemon.sprite} class="card-img-top" alt="...">
-        <button id="like" class="fav" type="button"><i class="fa fa-heart" style="font-size:30px"></i></i></button>
+      
+<!--        </div>-->
+        <button id= ${pokemon.id}like class="fav" value=${pokemon.id}><i class="fa fa-heart" style="font-size:30px"></i></button>
+        <button id= ${pokemon.id}more value= ${pokemon.id}> More </button>
+        <div class="info" id= ${pokemon.id}info >
         <ul class="list-group list-group-flush">
             <li class="list-group-item text-center"> <span><strong> Height: ${pokemon.height}</strong></span></li>
             <li class="list-group-item text-center"> <span><strong> Weight: ${pokemon.weight}</strong></span></li>
         </ul>
+        </div>
+      
     </div>`
 }
 
@@ -127,7 +136,19 @@ searchBar.addEventListener("input", updatePoke);
 
 
 
-
+//for toggling the details button
+document.body.addEventListener('click',function(e){
+    console.log(e.target.id);
+    if(e.target.id.includes("more")){
+        const info = document.getElementById(e.target.value + "info");
+        const html = `
+    <ul>
+      <li>${pokemon.name}</li>
+    </ul>
+   `;
+        info.innerHTML += (html);
+    }
+});
 
 
 
