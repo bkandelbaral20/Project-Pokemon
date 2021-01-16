@@ -70,6 +70,7 @@ async function buildPokemon() {
             weight: pokeData.weight,
             sprite: pokeData.sprites.front_default,
             spriteB: pokeData.sprites.back_default,
+            abilities:pokeData.abilities[0].ability.name,
         }
         return newPokemon
     })
@@ -95,14 +96,14 @@ function createPokemon(pokemon) {
         <div class="card-body">
            <h5 class="card-title text-center"><strong>${pokemon.name}</strong></h5>
         </div>
-<!--        <div class="row inline-block"> -->
+        <div class="card-content center-align"> 
         <img src= ${pokemon.sprite} class="card-img-top" alt="...">
-      
-<!--        </div>-->
+      <img src= ${pokemon.spriteB} class="card-img-top" alt="...">
+        </div>
         <button id= ${pokemon.id}like class="fav" value=${pokemon.id}><i class="fa fa-heart" style="font-size:30px"></i></button>
         <button id= ${pokemon.id}more value= ${pokemon.id}> More </button>
-        <div class="info" id= ${pokemon.id}info >
-        <ul class="list-group list-group-flush">
+        <div class="info">
+        <ul class="list-group list-group-flush" id= ${pokemon.id}info>
             <li class="list-group-item text-center"> <span><strong> Height: ${pokemon.height}</strong></span></li>
             <li class="list-group-item text-center"> <span><strong> Weight: ${pokemon.weight}</strong></span></li>
         </ul>
@@ -134,20 +135,24 @@ document.addEventListener('DOMContentLoaded', render);
 searchBar.addEventListener("input", updatePoke);
 
 
-
-
 //for toggling the details button
-document.body.addEventListener('click',function(e){
-    console.log(e.target.id);
+document.body.addEventListener('click', async function(e){
+    // console.log(e.target.id);
+      const poke = await pokemon.then(data => data);
+      const pk = poke.filter(element => element.id == e.target.value);
+      console.log(pk);
+
     if(e.target.id.includes("more")){
         const info = document.getElementById(e.target.value + "info");
-        const html = `
-    <ul>
-      <li>${pokemon.name}</li>
-    </ul>
-   `;
-        info.innerHTML += (html);
+
+        // Create new html
+        const html = document.createElement('li');
+        html.textContent = `Abilities:${pk[0].abilities}`;
+        html.className = "list-group-item text-center";
+        info.appendChild(html);
     }
+
+
 });
 
 
