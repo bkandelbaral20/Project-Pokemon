@@ -70,7 +70,9 @@ async function buildPokemon() {
             weight: pokeData.weight,
             sprite: pokeData.sprites.front_default,
             spriteB: pokeData.sprites.back_default,
-            abilities:pokeData.abilities[0].ability.name,
+            abilities:pokeData.abilities,
+            types:pokeData.types,
+
         }
         return newPokemon
     })
@@ -145,11 +147,19 @@ document.body.addEventListener('click', async function(e){
     if(e.target.id.includes("more")){
         const info = document.getElementById(e.target.value + "info");
 
-        // Create new html
+        // Create a new html list
+
+        //for Abilities
         const html = document.createElement('li');
-        html.textContent = `Abilities:${pk[0].abilities}`;
-        html.className = "list-group-item text-center";
+        html.textContent = `Abilities: ${pk[0].abilities[0].ability.name},${pk[0].abilities[1].ability.name}`;
+        html.className = "list-group-item text-center font-weight-bold";
         info.appendChild(html);
+
+        //for Types
+        const html1 = document.createElement('li');
+        html1.textContent = `Types: ${pk[0].types[0].type.name}`;
+        html1.className = "list-group-item text-center font-weight-bold";
+        info.appendChild(html1);
     }
 
 
