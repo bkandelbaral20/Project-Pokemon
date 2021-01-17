@@ -8,13 +8,8 @@
     color: chocolate;
 }
 
-#container {
-    position: relative;
+.container-fluid {
     background-color: cornflowerblue;
-}
-
-.pokemon {
-    padding: 2px 10px 2px 2px;
 }
 
 .fav {
@@ -27,8 +22,7 @@
 .card {
     margin-top: 25px;
     display: inline-block;
-    padding: 20px;
-    border: groove;
+    padding: 20px ;
     border-radius: 2rem;
 }
 
@@ -39,6 +33,4 @@ h5 {
 .card, .card-body, .list-group {
     border: 2px solid #98D9F5;
 }
-
-
 

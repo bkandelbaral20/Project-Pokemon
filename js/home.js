@@ -70,9 +70,8 @@ async function buildPokemon() {
             weight: pokeData.weight,
             sprite: pokeData.sprites.front_default,
             spriteB: pokeData.sprites.back_default,
-            abilities:pokeData.abilities,
-            types:pokeData.types,
-
+            abilities: pokeData.abilities,
+            types: pokeData.types,
         }
         return newPokemon
     })
@@ -94,16 +93,18 @@ function structure(arrayOfPokemon) {
 
 function createPokemon(pokemon) {
     return `
-    <div class="card " style="width: 25rem;">
+    <div class="card mx-auto" style="width: 20rem;">
         <div class="card-body">
            <h5 class="card-title text-center"><strong>${pokemon.name}</strong></h5>
         </div>
-        <div class="card-content center-align"> 
+        
+        <div class="d-grid;"> 
         <img src= ${pokemon.sprite} class="card-img-top" alt="...">
-      <img src= ${pokemon.spriteB} class="card-img-top" alt="...">
         </div>
+        
         <button id= ${pokemon.id}like class="fav" value=${pokemon.id}><i class="fa fa-heart" style="font-size:30px"></i></button>
-        <button id= ${pokemon.id}more value= ${pokemon.id}> More </button>
+        <button class="more float-right" id= ${pokemon.id}more value= ${pokemon.id}> More </button>
+        
         <div class="info">
         <ul class="list-group list-group-flush" id= ${pokemon.id}info>
             <li class="list-group-item text-center"> <span><strong> Height: ${pokemon.height}</strong></span></li>
@@ -138,40 +139,54 @@ searchBar.addEventListener("input", updatePoke);
 
 
 //for toggling the details button
-document.body.addEventListener('click', async function(e){
-    // console.log(e.target.id);
-      const poke = await pokemon.then(data => data);
-      const pk = poke.filter(element => element.id == e.target.value);
-      console.log(pk);
 
-    if(e.target.id.includes("more")){
+let flag = 1; //this is for removing once to click it
+document.body.addEventListener('click', async function (e) {
+    // console.log(e.target.id);
+
+    //getting data from api
+    const poke = await pokemon.then(data => data);
+
+    //checking the pokemon each id which is equal to its id(unique)
+    const pk = poke.filter(element => element.id == e.target.value);
+    // console.log(pk);
+
+    //targeting each pokemon id for more button(to prints out more details about pokemon)
+    if (e.target.id.includes("more")) {
+        flag++; // incrementing flag
+        flag %= 2; // set flag to 0 whenever flag is an even number
+
+        //now it is targeting <ul> from the card to add up for <li> on it
         const info = document.getElementById(e.target.value + "info");
 
-        // Create a new html list
+        //if flag is 0 then show new info else remove it
+        if (flag === 0) {
+            // Create a new html list
+            //       for Abilities
+            const html = document.createElement('li');
+            html.textContent = `Abilities: ${pk[0].abilities[0].ability.name},${pk[0].abilities[1].ability.name}`;
+            html.className = "list-group-item text-center font-weight-bold";
+            html.id = "0";
+            info.appendChild(html);
 
-        //for Abilities
-        const html = document.createElement('li');
-        html.textContent = `Abilities: ${pk[0].abilities[0].ability.name},${pk[0].abilities[1].ability.name}`;
-        html.className = "list-group-item text-center font-weight-bold";
-        info.appendChild(html);
+            //for Types
+            const html1 = document.createElement('li');
+            html1.textContent = `Types: ${pk[0].types[0].type.name}`;
+            html1.className = "list-group-item text-center font-weight-bold";
+            html1.id = "1";
+            info.appendChild(html1);
 
-        //for Types
-        const html1 = document.createElement('li');
-        html1.textContent = `Types: ${pk[0].types[0].type.name}`;
-        html1.className = "list-group-item text-center font-weight-bold";
-        info.appendChild(html1);
+        } else {  // removing it
+            removeElement("0", info);
+            removeElement("1", info);
+        }
     }
-
-
 });
 
-
-
-
-
-
-
-
-
+//for removing the more info of each pokemon
+function removeElement(div, info) {
+    var olddiv = document.getElementById(div);
+    info.removeChild(olddiv);
+}
 
 
